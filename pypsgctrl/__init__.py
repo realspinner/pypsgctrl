@@ -1,6 +1,6 @@
 ## @file
 # @brief Public exports for the PSG9080 driver.
-"""PSG9080 serial driver. Import public classes directly from pypsg."""
+"""PSG9080 serial driver. Import public classes directly from pypsgctrl."""
 from .channel import Channel
 from .device import PSG9080
 from .enums import FrequencyUnit, Modulation, TriggerSource, Waveform

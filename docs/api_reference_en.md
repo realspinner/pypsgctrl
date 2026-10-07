@@ -1,9 +1,9 @@
-# API reference: pypsg 0.1.0
+# API reference: pypsgctrlctrl 0.1.0
 
 [Русская версия](api_reference_ru.md)
 
 PSG9080 driver for Python >= 3.10. Protocol source: `PSG Communication Protocol.pdf` (manufacturer document, not distributed here).
-Public imports live in `pypsg/__init__.py`; implementation is split into
+Public imports live in `pypsgctrlctrl/__init__.py`; implementation is split into
 `device.py`, `channel.py`, `registers.py`, `enums.py`, `errors.py`, and `transport.py`.
 Serial dependency: `pyserial>=3.5`. Source documentation uses Doxygen comments
 `## @brief`, `@param`, `@return`, and `@exception`.
@@ -18,7 +18,7 @@ python -m unittest discover -s tests -v
 ```
 
 ```python
-from pypsg import PSG9080, Waveform
+from pypsgctrlctrl import PSG9080, Waveform
 
 with PSG9080.connect('/dev/cu.usbserial-2120', timeout=1.0) as psg:
     print(psg.ch1.frequency)           # Decimal, Hz
@@ -189,7 +189,7 @@ direction 0 increasing/1 decreasing/2 back and forth, linear or logarithmic mode
 Enable sweep separately. Read commands 62/64 using read_raw(), without unit conversion.
 
 ```python
-from pypsg import PSG9080
+from pypsgctrlctrl import PSG9080
 
 with PSG9080.connect('/dev/cu.usbserial-2120') as psg:
     psg.configure_measurement(dc=False, gate_seconds='0.1', low_frequency=True)
@@ -273,7 +273,7 @@ MHZ_SMALL is a compatibility alias for MILLIHZ (millihertz), not megahertz.
 ## Modulation, memory, and arbitrary waveform examples
 
 ```python
-from pypsg import PSG9080, Modulation, TriggerSource
+from pypsgctrlctrl import PSG9080, Modulation, TriggerSource
 
 with PSG9080.connect('/dev/cu.usbserial-2120') as psg:
     psg.set('modulation', Modulation.AM, Modulation.BURST)
@@ -299,7 +299,7 @@ must be scaled beforehand. The read-response code must match the request.
 Write acknowledgments are OK, OK., or the hardware-observed :ok, followed by CRLF.
 
 ```python
-from pypsg import PSG9080
+from pypsgctrlctrl import PSG9080
 
 with PSG9080.connect('/dev/cu.usbserial-2120') as psg:
     print(psg.read_raw(13))              # Example: ('000003000000', '0')
@@ -317,7 +317,7 @@ to 65536 bytes.
 
 ```python
 import serial
-from pypsg import PSG9080
+from pypsgctrlctrl import PSG9080
 
 transport = serial.Serial('/dev/cu.usbserial-2120', 115200,
                           timeout=1, write_timeout=1)

@@ -1,9 +1,9 @@
 [English version](api_reference_en.md)
 
-# API reference: pypsg 0.1.0
+# API reference: pypsgctrlctrl 0.1.0
 
 Драйвер PSG9080 для Python >= 3.10. Источник протокола — `PSG Communication Protocol.pdf` (документ производителя, в репозиторий не включён).
-Публичные импорты: `pypsg/__init__.py`; реализация: `device.py`, `channel.py`,
+Публичные импорты: `pypsgctrlctrl/__init__.py`; реализация: `device.py`, `channel.py`,
 `registers.py`, `enums.py`, `errors.py`, `transport.py`; serial-зависимость: `pyserial>=3.5`.
 Документация в коде оформлена Doxygen-комментариями `## @brief`, `@param`, `@return`, `@exception`.
 
@@ -17,7 +17,7 @@ python -m unittest discover -s tests -v
 ```
 
 ```python
-from pypsg import PSG9080, Waveform
+from pypsgctrlctrl import PSG9080, Waveform
 
 with PSG9080.connect('/dev/cu.usbserial-2120', timeout=1.0) as psg:
     print(psg.ch1.frequency)           # Decimal, Гц
@@ -191,7 +191,7 @@ sweep_start/end_amplitude — 0.001 Вpp, sweep_start/end_duty — 0.01%.
 Команды 62 и 64 читаются через read_raw(), без автоматического преобразования.
 
 ```python
-from pypsg import PSG9080
+from pypsgctrlctrl import PSG9080
 
 with PSG9080.connect('/dev/cu.usbserial-2120') as psg:
     psg.configure_measurement(dc=False, gate_seconds='0.1', low_frequency=True)
@@ -274,7 +274,7 @@ MHZ_SMALL — совместимый alias MILLIHZ (миллигерцы), не 
 ## Примеры модуляции, памяти и произвольной формы
 
 ```python
-from pypsg import PSG9080, Modulation, TriggerSource
+from pypsgctrlctrl import PSG9080, Modulation, TriggerSource
 
 with PSG9080.connect('/dev/cu.usbserial-2120') as psg:
     psg.set('modulation', Modulation.AM, Modulation.BURST)
@@ -300,7 +300,7 @@ with PSG9080.connect('/dev/cu.usbserial-2120') as psg:
 Подтверждения записи: `OK`, `OK.` и полученный на приборе `:ok`, с CRLF.
 
 ```python
-from pypsg import PSG9080
+from pypsgctrlctrl import PSG9080
 
 with PSG9080.connect('/dev/cu.usbserial-2120') as psg:
     print(psg.read_raw(13))              # Например ('000003000000', '0')
@@ -318,7 +318,7 @@ read() должен иметь конечный таймаут: драйвер �
 
 ```python
 import serial
-from pypsg import PSG9080
+from pypsgctrlctrl import PSG9080
 
 transport = serial.Serial('/dev/cu.usbserial-2120', 115200,
                           timeout=1, write_timeout=1)

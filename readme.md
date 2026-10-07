@@ -1,4 +1,4 @@
-# pypsg
+# pypsgctrl
 
 [English](#english) · [Русский](#русский)
 
@@ -24,7 +24,7 @@ Opening a connection does not enable outputs.
 ### Quick start
 
 ```python
-from pypsg import PSG9080, Waveform
+from pypsgctrl import PSG9080, Waveform
 
 with PSG9080.connect('/dev/cu.usbserial-2120', timeout=1.0) as generator:
     print(generator.ch1.frequency)       # Decimal, Hz
@@ -46,15 +46,15 @@ reopen the connection. Hardware limits absent from the protocol remain the calle
 
 | Module | Purpose |
 | --- | --- |
-| `pypsg/__init__.py` | Stable public imports and version |
-| `pypsg/device.py` | Connection, wire exchange, general settings |
-| `pypsg/channel.py` | Channel properties, frequency/output control |
-| `pypsg/registers.py` | Register metadata and unit conversion |
-| `pypsg/enums.py` | Waveform, frequency, modulation, trigger enums |
-| `pypsg/errors.py` | Driver exceptions |
-| `pypsg/transport.py` | Injectable transport contract |
+| `pypsgctrl/__init__.py` | Stable public imports and version |
+| `pypsgctrl/device.py` | Connection, wire exchange, general settings |
+| `pypsgctrl/channel.py` | Channel properties, frequency/output control |
+| `pypsgctrl/registers.py` | Register metadata and unit conversion |
+| `pypsgctrl/enums.py` | Waveform, frequency, modulation, trigger enums |
+| `pypsgctrl/errors.py` | Driver exceptions |
+| `pypsgctrl/transport.py` | Injectable transport contract |
 
-Imports remain `from pypsg import PSG9080, Waveform`. Source comments use Doxygen
+Public imports use `from pypsgctrl import PSG9080, Waveform`. Source comments use Doxygen
 tags. With Doxygen installed, run `doxygen Doxyfile` from the repository root to generate
 `build/doxygen/html`.
 
@@ -96,7 +96,7 @@ python -m pip install .
 ### Быстрый старт
 
 ```python
-from pypsg import PSG9080, Waveform
+from pypsgctrl import PSG9080, Waveform
 
 with PSG9080.connect('/dev/cu.usbserial-2120', timeout=1.0) as generator:
     print(generator.ch1.frequency)       # Decimal, Hz
@@ -118,15 +118,15 @@ with PSG9080.connect('/dev/cu.usbserial-2120', timeout=1.0) as generator:
 
 | Модуль | Назначение |
 | --- | --- |
-| `pypsg/__init__.py` | Стабильные публичные импорты и версия |
-| `pypsg/device.py` | Соединение, обмен, общие настройки |
-| `pypsg/channel.py` | Свойства канала, частота и управление выходом |
-| `pypsg/registers.py` | Метаданные регистров и преобразование единиц |
-| `pypsg/enums.py` | Перечисления формы, частоты, модуляции и запуска |
-| `pypsg/errors.py` | Исключения драйвера |
-| `pypsg/transport.py` | Контракт внедряемого транспорта |
+| `pypsgctrl/__init__.py` | Стабильные публичные импорты и версия |
+| `pypsgctrl/device.py` | Соединение, обмен, общие настройки |
+| `pypsgctrl/channel.py` | Свойства канала, частота и управление выходом |
+| `pypsgctrl/registers.py` | Метаданные регистров и преобразование единиц |
+| `pypsgctrl/enums.py` | Перечисления формы, частоты, модуляции и запуска |
+| `pypsgctrl/errors.py` | Исключения драйвера |
+| `pypsgctrl/transport.py` | Контракт внедряемого транспорта |
 
-Импорты сохранены: `from pypsg import PSG9080, Waveform`. Комментарии оформлены
+Публичные импорты: `from pypsgctrl import PSG9080, Waveform`. Комментарии оформлены
 тегами Doxygen. При установленном Doxygen команда `doxygen Doxyfile` из корня репозитория
 генерирует `build/doxygen/html`.
 

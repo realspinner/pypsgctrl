@@ -3,7 +3,7 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pypsg"
+name = "pypsgctrl"
 version = "0.1.0"
 description = "Python driver for the PSG9080 dual-channel function generator with USB serial control."
 readme = "readme.md"
@@ -25,4 +25,4 @@ Repository = "https://github.com/realspinner/pypsg"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["pypsg*"]
+include = ["pypsgctrl*"]

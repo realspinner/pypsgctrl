@@ -1,7 +1,7 @@
-PROJECT_NAME           = pypsg
+PROJECT_NAME           = pypsgctrl
 PROJECT_NUMBER         = 0.1.0
 OUTPUT_DIRECTORY       = build/doxygen
-INPUT                  = pypsg readme.md docs/api_reference_en.md docs/api_reference_ru.md
+INPUT                  = pypsgctrl readme.md docs/api_reference_en.md docs/api_reference_ru.md
 FILE_PATTERNS          = *.py *.md
 RECURSIVE              = YES
 OPTIMIZE_OUTPUT_JAVA   = YES

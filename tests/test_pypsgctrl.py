@@ -1,7 +1,7 @@
 import unittest
 from decimal import Decimal
 from unittest.mock import patch
-from pypsg import PSG9080, Waveform, ProtocolError, PSGTimeoutError, PSGError, REGISTERS, CHANNEL_REGISTERS
+from pypsgctrl import PSG9080, Waveform, ProtocolError, PSGTimeoutError, PSGError, REGISTERS, CHANNEL_REGISTERS
 
 
 class Fake:
