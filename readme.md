@@ -1,6 +1,7 @@
 # pypsgctrl
 
-[English](#english) · [Русский](#русский)
+English documentation is followed by the Russian translation.
+После английского текста приведена русская версия.
 
 ## English
 
@@ -10,14 +11,29 @@ modulation, measurement, sweep, system settings, and parameter memory.
 
 ### Installation
 
-Python >= 3.10 and pyserial >= 3.5 are required. After cloning the repository,
-install from the repository root:
+Python 3.10 or newer is required. pyserial is installed automatically.
+
+For releases published on PyPI:
 
 ```sh
-python -m pip install .
+python -m pip install pypsgctrl
 ```
 
-For development, use `python -m pip install -e .`. Serial settings: 115200 baud,
+The first release has been verified on TestPyPI; production publication is pending.
+Until then, install directly from GitHub:
+
+```sh
+python -m pip install "git+https://github.com/realspinner/pypsgctrl.git"
+```
+
+To install the verified TestPyPI release in a fresh virtual environment:
+
+```sh
+python -m pip install pyserial
+python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.0
+```
+
+After cloning the repository, use `python -m pip install -e .` for development. Serial settings: 115200 baud,
 8-N-1, without flow control. Replace the macOS example port with your device's port.
 Opening a connection does not enable outputs.
 
@@ -42,7 +58,7 @@ reopen the connection. Hardware limits absent from the protocol remain the calle
 
 ### Documentation and structure
 
-[English API reference](docs/api_reference_en.md) · [Russian API reference](docs/api_reference_ru.md)
+[English API reference](https://github.com/realspinner/pypsgctrl/blob/main/docs/api_reference_en.md) · [Russian API reference](https://github.com/realspinner/pypsgctrl/blob/main/docs/api_reference_ru.md)
 
 | Module | Purpose |
 | --- | --- |
@@ -54,11 +70,14 @@ reopen the connection. Hardware limits absent from the protocol remain the calle
 | `pypsgctrl/errors.py` | Driver exceptions |
 | `pypsgctrl/transport.py` | Injectable transport contract |
 
-Public imports use `from pypsgctrl import PSG9080, Waveform`. Source comments use Doxygen
+Public imports use `from pypsgctrl import PSG9080, Waveform`.
+Report bugs through [GitHub Issues](https://github.com/realspinner/pypsgctrl/issues). Source comments use Doxygen
 tags. With Doxygen installed, run `doxygen Doxyfile` from the repository root to generate
 `build/doxygen/html`.
 
 ### Validation
+
+From the cloned repository root:
 
 ```sh
 python -m unittest discover -s tests -v
@@ -73,7 +92,7 @@ Initial brightness 101 could not be restored because writes are clamped to 100.
 
 ### License
 
-MIT License, copyright 2026 Oleg Kochetov. See [LICENSE](LICENSE).
+MIT License, copyright 2026 Oleg Kochetov. See [LICENSE](https://github.com/realspinner/pypsgctrl/blob/main/LICENSE).
 Vendor PDFs and recorder calibration utilities are not included in this repository.
 
 ## Русский
@@ -84,13 +103,29 @@ Vendor PDFs and recorder calibration utilities are not included in this reposito
 
 ### Установка
 
-Требуются Python >= 3.10 и pyserial >= 3.5. После клонирования установите пакет из корня репозитория:
+Требуется Python 3.10 или новее. pyserial устанавливается автоматически.
+
+Для релизов, опубликованных на основном PyPI:
 
 ```sh
-python -m pip install .
+python -m pip install pypsgctrl
 ```
 
-Для разработки: `python -m pip install -e .`. Порт: 115200 baud, 8-N-1,
+Первый релиз проверен на TestPyPI; публикация на основном PyPI ещё не выполнена.
+До неё можно установить пакет из GitHub:
+
+```sh
+python -m pip install "git+https://github.com/realspinner/pypsgctrl.git"
+```
+
+Установка проверенного релиза TestPyPI в новом виртуальном окружении:
+
+```sh
+python -m pip install pyserial
+python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.0
+```
+
+После клонирования для разработки: `python -m pip install -e .`. Порт: 115200 baud, 8-N-1,
 без flow control. Замените пример macOS на свой порт. Подключение не включает выходы.
 
 ### Быстрый старт
@@ -114,7 +149,7 @@ with PSG9080.connect('/dev/cu.usbserial-2120', timeout=1.0) as generator:
 
 ### Документация и структура
 
-[Справочник на английском](docs/api_reference_en.md) · [Справочник на русском](docs/api_reference_ru.md)
+[Справочник на английском](https://github.com/realspinner/pypsgctrl/blob/main/docs/api_reference_en.md) · [Справочник на русском](https://github.com/realspinner/pypsgctrl/blob/main/docs/api_reference_ru.md)
 
 | Модуль | Назначение |
 | --- | --- |
@@ -126,11 +161,14 @@ with PSG9080.connect('/dev/cu.usbserial-2120', timeout=1.0) as generator:
 | `pypsgctrl/errors.py` | Исключения драйвера |
 | `pypsgctrl/transport.py` | Контракт внедряемого транспорта |
 
-Публичные импорты: `from pypsgctrl import PSG9080, Waveform`. Комментарии оформлены
+Публичные импорты: `from pypsgctrl import PSG9080, Waveform`.
+Об ошибках можно сообщить через [GitHub Issues](https://github.com/realspinner/pypsgctrl/issues). Комментарии оформлены
 тегами Doxygen. При установленном Doxygen команда `doxygen Doxyfile` из корня репозитория
 генерирует `build/doxygen/html`.
 
 ### Проверка
+
+Из корня клонированного репозитория:
 
 ```sh
 python -m unittest discover -s tests -v
@@ -145,5 +183,5 @@ python -m unittest discover -s tests -v
 
 ### Лицензия
 
-MIT License, правообладатель — Oleg Kochetov, 2026. См. [LICENSE](LICENSE).
+MIT License, правообладатель — Oleg Kochetov, 2026. См. [LICENSE](https://github.com/realspinner/pypsgctrl/blob/main/LICENSE).
 PDF производителя и утилиты калибровки рекордера в репозиторий не включены.
