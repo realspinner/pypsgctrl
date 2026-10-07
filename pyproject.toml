@@ -21,7 +21,7 @@ requires-python = ">=3.10"
 dependencies = ["pyserial>=3.5"]
 
 [project.urls]
-Repository = "https://github.com/realspinner/pypsg"
+Repository = "https://github.com/realspinner/pypsgctrl"
 
 [tool.setuptools.packages.find]
 where = ["."]
