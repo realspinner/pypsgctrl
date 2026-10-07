@@ -19,18 +19,18 @@ For releases published on PyPI:
 python -m pip install pypsgctrl
 ```
 
-The first release has been verified on TestPyPI; production publication is pending.
+The package is available on TestPyPI; production publication is pending.
 Until then, install directly from GitHub:
 
 ```sh
 python -m pip install "git+https://github.com/realspinner/pypsgctrl.git"
 ```
 
-To install the verified TestPyPI release in a fresh virtual environment:
+To install this release from TestPyPI in a fresh virtual environment:
 
 ```sh
 python -m pip install pyserial
-python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.0
+python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.1
 ```
 
 After cloning the repository, use `python -m pip install -e .` for development. Serial settings: 115200 baud,
@@ -96,18 +96,18 @@ Vendor PDFs and recorder calibration utilities are not included in this reposito
 python -m pip install pypsgctrl
 ```
 
-Первый релиз проверен на TestPyPI; публикация на основном PyPI ещё не выполнена.
+Пакет доступен на TestPyPI; публикация на основном PyPI ещё не выполнена.
 До неё можно установить пакет из GitHub:
 
 ```sh
 python -m pip install "git+https://github.com/realspinner/pypsgctrl.git"
 ```
 
-Установка проверенного релиза TestPyPI в новом виртуальном окружении:
+Установка этой версии с TestPyPI в новом виртуальном окружении:
 
 ```sh
 python -m pip install pyserial
-python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.0
+python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.1
 ```
 
 После клонирования для разработки: `python -m pip install -e .`. Порт: 115200 baud, 8-N-1,
