@@ -13,14 +13,14 @@ modulation, measurement, sweep, system settings, and parameter memory.
 
 Python 3.10 or newer is required. pyserial is installed automatically.
 
-For releases published on PyPI:
+Install the latest release from PyPI:
 
 ```sh
 python -m pip install pypsgctrl
 ```
 
-The package is available on TestPyPI; production publication is pending.
-Until then, install directly from GitHub:
+The package is published on [PyPI](https://pypi.org/project/pypsgctrl/).
+To install the development version directly from GitHub:
 
 ```sh
 python -m pip install "git+https://github.com/realspinner/pypsgctrl.git"
@@ -90,14 +90,14 @@ Vendor PDFs and recorder calibration utilities are not included in this reposito
 
 Требуется Python 3.10 или новее. pyserial устанавливается автоматически.
 
-Для релизов, опубликованных на основном PyPI:
+Установка последнего релиза с PyPI:
 
 ```sh
 python -m pip install pypsgctrl
 ```
 
-Пакет доступен на TestPyPI; публикация на основном PyPI ещё не выполнена.
-До неё можно установить пакет из GitHub:
+Пакет опубликован на [PyPI](https://pypi.org/project/pypsgctrl/).
+Для установки версии для разработки непосредственно из GitHub:
 
 ```sh
 python -m pip install "git+https://github.com/realspinner/pypsgctrl.git"
