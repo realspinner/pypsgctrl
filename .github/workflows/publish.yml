@@ -1,17 +1,29 @@
-name: Publish to TestPyPI
+name: Publish distributions
 
 on:
   workflow_dispatch:
+    inputs:
+      target:
+        description: Package index
+        type: choice
+        options: [testpypi, pypi]
+        default: testpypi
+        required: true
+      source_run_id:
+        description: Successful TestPyPI run ID to promote (required for PyPI)
+        type: string
+        required: false
 
 permissions:
   contents: read
 
 concurrency:
-  group: testpypi-publication
+  group: package-publication
   cancel-in-progress: false
 
 jobs:
   build:
+    if: inputs.target == 'testpypi'
     name: Test and build distributions
     runs-on: ubuntu-latest
     steps:
@@ -53,3 +65,94 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
+
+  verify-production:
+    name: Verify previously tested distributions
+    if: inputs.target == 'pypi'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.10'
+      - name: Verify successful source workflow
+        env:
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          python - <<'PYCODE'
+          import json, os, urllib.request
+          run_id = os.environ['SOURCE_RUN_ID']
+          if not run_id.isdigit():
+              raise SystemExit('A successful TestPyPI source_run_id is required')
+          request = urllib.request.Request(
+              f"https://api.github.com/repos/{os.environ['REPOSITORY']}/actions/runs/{run_id}",
+              headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
+                       'Accept': 'application/vnd.github+json'})
+          with urllib.request.urlopen(request, timeout=30) as response:
+              run = json.load(response)
+          if (run['conclusion'] != 'success' or run['status'] != 'completed'
+                  or run['path'] != '.github/workflows/publish.yml'
+                  or run['head_branch'] != 'main'):
+              raise SystemExit('Source must be a successful publish.yml run on main')
+          print('Verified source run:', run_id, 'commit:', run['head_sha'])
+          PYCODE
+      - name: Download original tested distributions
+        uses: actions/download-artifact@v6
+        with:
+          name: distributions
+          path: dist/
+          run-id: ${{ inputs.source_run_id }}
+          github-token: ${{ github.token }}
+      - name: Match distributions to TestPyPI checksums
+        run: |
+          python - <<'PYCODE'
+          import hashlib, json, pathlib, urllib.request, zipfile, email
+          files = sorted(pathlib.Path('dist').iterdir())
+          wheels = [p for p in files if p.suffix == '.whl']
+          if len(files) != 2 or len(wheels) != 1:
+              raise SystemExit('Expected exactly one wheel and one source distribution')
+          with zipfile.ZipFile(wheels[0]) as wheel:
+              metadata_files = [n for n in wheel.namelist() if n.endswith('/METADATA')]
+              if len(metadata_files) != 1:
+                  raise SystemExit('Invalid wheel metadata')
+              metadata = email.message_from_bytes(wheel.read(metadata_files[0]))
+          if metadata['Name'] != 'pypsgctrl':
+              raise SystemExit('Unexpected project name')
+          version = metadata['Version']
+          with urllib.request.urlopen(
+                  f'https://test.pypi.org/pypi/pypsgctrl/{version}/json', timeout=30) as response:
+              release = json.load(response)
+          expected = {f['filename']: f['digests']['sha256'] for f in release['urls']}
+          for path in files:
+              digest = hashlib.sha256(path.read_bytes()).hexdigest()
+              if expected.get(path.name) != digest:
+                  raise SystemExit('TestPyPI checksum mismatch: ' + path.name)
+              print('Verified:', path.name, digest)
+          PYCODE
+      - name: Store verified production distributions
+        uses: actions/upload-artifact@v5
+        with:
+          name: production-distributions
+          path: dist/
+          if-no-files-found: error
+
+  publish-production:
+    name: Publish verified distributions to PyPI
+    needs: verify-production
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/pypsgctrl/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v6
+        with:
+          name: production-distributions
+          path: dist/
+      - name: Publish using Trusted Publishing
+        uses: pypa/gh-action-pypi-publish@release/v1
