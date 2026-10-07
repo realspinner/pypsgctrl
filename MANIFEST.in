@@ -1,0 +1,5 @@
+include Doxyfile
+recursive-include docs *.md
+include tests/test_pypsg.py
+exclude tests/test_calibrate_recorder.py
+exclude calibrate_recorder.py check_connection.py check_write.py demonstrate.py

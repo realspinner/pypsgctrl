@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pypsg"
+version = "0.1.0"
+description = "Python driver for the PSG9080 dual-channel function generator with USB serial control."
+readme = "readme.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Oleg Kochetov"}]
+keywords = ["PSG9080", "function-generator", "serial", "instrument-control"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+]
+requires-python = ">=3.10"
+dependencies = ["pyserial>=3.5"]
+
+[project.urls]
+Repository = "https://github.com/realspinner/pypsg"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pypsg*"]
