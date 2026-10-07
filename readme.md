@@ -75,21 +75,6 @@ Report bugs through [GitHub Issues](https://github.com/realspinner/pypsgctrl/iss
 tags. With Doxygen installed, run `doxygen Doxyfile` from the repository root to generate
 `build/doxygen/html`.
 
-### Validation
-
-From the cloned repository root:
-
-```sh
-python -m unittest discover -s tests -v
-```
-
-13 library tests use fake transports and require no hardware. They cover wire
-commands, scaling, errors, transport lifecycle, serial settings, and readback validation.
-
-Read/write checks were performed on 2026-10-07 at 115200, 8-N-1. The device returned
-`:ok` and the user confirmed visible changes. Analog output accuracy was not verified. Protocol ambiguities are documented in the reference.
-Initial brightness 101 could not be restored because writes are clamped to 100.
-
 ### License
 
 MIT License, copyright 2026 Oleg Kochetov. See [LICENSE](https://github.com/realspinner/pypsgctrl/blob/main/LICENSE).
@@ -165,21 +150,6 @@ with PSG9080.connect('/dev/cu.usbserial-2120', timeout=1.0) as generator:
 Об ошибках можно сообщить через [GitHub Issues](https://github.com/realspinner/pypsgctrl/issues). Комментарии оформлены
 тегами Doxygen. При установленном Doxygen команда `doxygen Doxyfile` из корня репозитория
 генерирует `build/doxygen/html`.
-
-### Проверка
-
-Из корня клонированного репозитория:
-
-```sh
-python -m unittest discover -s tests -v
-```
-
-13 тестов библиотеки используют имитацию транспорта и не требуют прибора.
-Проверяются команды, масштабы, ошибки, жизненный цикл, serial-настройки и ответы.
-
-Чтение/запись проверены 2026-10-07 с 115200, 8-N-1. Прибор возвращает `:ok`,
-пользователь подтвердил видимые изменения. Точность аналогового выхода не проверялась. Неоднозначности протокола описаны в справочнике.
-Исходная яркость 101 не восстановилась: прибор ограничивает запись значением 100.
 
 ### Лицензия
 
