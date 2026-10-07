@@ -30,7 +30,7 @@ To install this release from TestPyPI in a fresh virtual environment:
 
 ```sh
 python -m pip install pyserial
-python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.1
+python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.2
 ```
 
 After cloning the repository, use `python -m pip install -e .` for development. Serial settings: 115200 baud,
@@ -107,7 +107,7 @@ python -m pip install "git+https://github.com/realspinner/pypsgctrl.git"
 
 ```sh
 python -m pip install pyserial
-python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.1
+python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.2
 ```
 
 После клонирования для разработки: `python -m pip install -e .`. Порт: 115200 baud, 8-N-1,

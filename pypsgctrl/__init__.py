@@ -8,7 +8,7 @@ from .errors import PSGError, PSGTimeoutError, ProtocolError
 from .registers import CHANNEL_REGISTERS, REGISTERS, Register
 from .transport import Transport
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 __all__ = [
     'PSG9080', 'Channel', 'Waveform', 'FrequencyUnit', 'Modulation',
     'TriggerSource', 'PSGError', 'ProtocolError', 'PSGTimeoutError',

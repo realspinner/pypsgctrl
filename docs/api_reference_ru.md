@@ -1,6 +1,6 @@
 [English version](api_reference_en.md)
 
-# API reference: pypsgctrl 0.1.1
+# API reference: pypsgctrl 0.1.2
 
 Драйвер PSG9080 для Python >= 3.10. Источник протокола — `PSG Communication Protocol.pdf` (документ производителя, в репозиторий не включён).
 Публичные импорты: `pypsgctrl/__init__.py`; реализация: `device.py`, `channel.py`,
