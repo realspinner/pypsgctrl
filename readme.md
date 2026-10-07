@@ -30,7 +30,7 @@ To install this release from TestPyPI in a fresh virtual environment:
 
 ```sh
 python -m pip install pyserial
-python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.2
+python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.3
 ```
 
 After cloning the repository, use `python -m pip install -e .` for development. Serial settings: 115200 baud,
@@ -78,7 +78,7 @@ tags. With Doxygen installed, run `doxygen Doxyfile` from the repository root to
 ### License
 
 MIT License, copyright 2026 Oleg Kochetov. See [LICENSE](https://github.com/realspinner/pypsgctrl/blob/main/LICENSE).
-Vendor PDFs and recorder calibration utilities are not included in this repository.
+
 
 ## Русский
 
@@ -107,7 +107,7 @@ python -m pip install "git+https://github.com/realspinner/pypsgctrl.git"
 
 ```sh
 python -m pip install pyserial
-python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.2
+python -m pip install --index-url https://test.pypi.org/simple/ --no-deps pypsgctrl==0.1.3
 ```
 
 После клонирования для разработки: `python -m pip install -e .`. Порт: 115200 baud, 8-N-1,
@@ -154,4 +154,3 @@ with PSG9080.connect('/dev/cu.usbserial-2120', timeout=1.0) as generator:
 ### Лицензия
 
 MIT License, правообладатель — Oleg Kochetov, 2026. См. [LICENSE](https://github.com/realspinner/pypsgctrl/blob/main/LICENSE).
-PDF производителя и утилиты калибровки рекордера в репозиторий не включены.

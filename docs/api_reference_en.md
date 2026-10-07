@@ -1,4 +1,4 @@
-# API reference: pypsgctrl 0.1.2
+# API reference: pypsgctrl 0.1.3
 
 [Русская версия](api_reference_ru.md)
 

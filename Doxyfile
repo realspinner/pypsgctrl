@@ -1,5 +1,5 @@
 PROJECT_NAME           = pypsgctrl
-PROJECT_NUMBER         = 0.1.2
+PROJECT_NUMBER         = 0.1.3
 OUTPUT_DIRECTORY       = build/doxygen
 INPUT                  = pypsgctrl readme.md docs/api_reference_en.md docs/api_reference_ru.md
 FILE_PATTERNS          = *.py *.md
